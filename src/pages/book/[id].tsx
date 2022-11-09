@@ -1,18 +1,20 @@
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
-import { books } from "..";
+// import { books } from "..";
 import Image from "next/image";
 import Layout from "../../components/Layouts/Layout";
 import { AiOutlineClockCircle } from "react-icons/ai";
 import { IoIosArrowDown } from "react-icons/io";
 import { Tabs } from "@mantine/core";
+import { useCtx } from "../../Contexts/GContext";
+// import { Book, books } from "../../data/book";
 
 const BookDetail = () => {
   const roter = useRouter();
+  const { books } = useCtx();
   const { id } = roter.query;
-  const book = books.find((b) => b.id === Number(id));
-  const [tab, SetTab] = useState("reading");
-  const isReading = tab === "Synopsis";
+  let b = books.find((b) => b.id === Number(id));
+  const [tab, SetTab] = useState("Synopsis");
   const [width, setWidth] = useState(0);
 
   useEffect(() => {
@@ -23,7 +25,7 @@ const BookDetail = () => {
     SetTab(value);
   };
 
-  if (!book) return <div>Book not found</div>;
+  if (!b) return <div>Book not found</div>;
 
   return (
     <Layout>
@@ -32,14 +34,14 @@ const BookDetail = () => {
       </h5>
       <div className="grid lg:grid-cols-3 gap-5">
         <div className="lg:col-span-2 order-2 lg:order-1">
-          <h2 className="text-xl lg:text-4xl font-semibold">{book.title}</h2>
-          <p className="text-gray-600 text-lg my-6">{book.sub_title}</p>
+          <h2 className="text-xl lg:text-4xl font-semibold">{b.title}</h2>
+          <p className="text-gray-600 text-lg my-6">{b.subtitle}</p>
           <p className="text-gray-600 text-lg mb-3">
             By Jim Collins and Bill Lazier
           </p>
           <h5 className="text-base text-gray-600 flex items-center gap-x-3">
             <AiOutlineClockCircle size={22} />
-            <span>{book.time} Ago</span>
+            <span>{b.time} Ago</span>
           </h5>
           <div className="flex items-center gap-x-1 md:gap-x-5 mt-14 mb-16">
             <button className="px-4 py-2 rounded-sm border border-gray-400">
@@ -82,15 +84,14 @@ const BookDetail = () => {
             </Tabs.List>
           </Tabs>
           <p className="pt-3">
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-            Perferendis, qui temporibus? Magnam adipisci cum natus doloremque
-            iusto. Optio delectus animi assumenda nulla harum numquam, aperiam
-            quaerat magnam ut atque reprehenderit.
+            {tab === "Synopsis" && b.synopsis}
+            {tab === "Who is it for?" && b.for}
+            {tab === "About the author" && b.aboutAuthor}
           </p>
         </div>
         <div className="order-1 rounded-md overflow-hidden w-full h-max sm:w-3/4 md:w-3/5 lg:w-full mx-auto">
           <Image
-            src={book.image}
+            src={b.imgSrc ? b.imgSrc : `/images/Book Images/${b.id}.svg`}
             layout="responsive"
             width={284}
             height={282}

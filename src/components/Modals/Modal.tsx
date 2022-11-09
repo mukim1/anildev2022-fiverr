@@ -28,7 +28,7 @@ export const Modal = (props: ModalProps) => {
       } fixed top-0 bottom-0 left-0 right-0 z-50 grid items-center modal bg-[rgba(0,0,0,0.5)]`}
     >
       <div
-        className={`bg-white dark:bg-zinc-800 overflow-auto mx-auto rounded lg:w-96 h-auto ${clses}`}
+        className={`bg-white dark:bg-zinc-800 overflow-auto mx-auto rounded w-[90%] sm:w-[70%] h-auto ${clses}`}
       >
         {children}
       </div>

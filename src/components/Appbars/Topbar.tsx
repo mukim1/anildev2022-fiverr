@@ -1,26 +1,16 @@
 import Image from "next/image";
 import React, { useState } from "react";
-// import { handleThemeChange } from "../../utils/utils";
 import { IoIosArrowDown } from "react-icons/io";
-import { FiBarChart2, FiSearch } from "react-icons/fi";
+import { FiBarChart2, FiHome, FiSearch } from "react-icons/fi";
 import { Section } from "../Layouts/Layout";
 import Link from "next/link";
-import {BsBarChart} from "react-icons/bs";
+import Addbook from "../AddBook/Addbook";
+import { Button, Drawer, Group, Menu } from "@mantine/core";
+import { exploreItems } from "../../data/explore";
 
 const Topbar = () => {
-  // const [dark, setDark] = useState(false);
-  // useEffect(() => {
-  //   if (localStorage.getItem("theme") === "dark") {
-  //     document.body.classList.add("bg-gray-900");
-  //     handleThemeChange(true);
-  //     setDark(true);
-  //   } else {
-  //     document.body.classList.add("bg-blue-50");
-  //   }
-  // }, []);
-  // const toggleLight = () => {
-  //   setDark((p) => (handleThemeChange(!p), !p));
-  // };
+  const [open, setOpen] = useState(false);
+  const [isExplor, setIsExplor] = useState(false);
 
   return (
     <div className="fixed top-0 w-full z-10 bg-white dark:bg-gray-800 dark:text-white">
@@ -32,16 +22,48 @@ const Topbar = () => {
           <span>
             <FiSearch />
           </span>
-          <button className="hidden md:flex items-center gap-x-2">
-            <span>Explor</span>
-            <IoIosArrowDown size={12} />
-          </button>
+
+          <Menu shadow={"xl"} offset={20}>
+            <Menu.Target>
+              <button className="hidden md:flex items-center gap-x-2">
+                <span>Explor</span>
+                <IoIosArrowDown size={12} />
+              </button>
+            </Menu.Target>
+            <Menu.Dropdown>
+              <div className="w-screen">
+                <Section>
+                  <div className="lg:flex pb-10">
+                    {exploreItems.map((item) => (
+                      <div className="flex-1" key={item.id}>
+                        <h3 className="text-lg font-semibold mb-2">
+                          {item.title}
+                        </h3>
+                        <hr className="mt-2 mb-4" />
+                        {item.items.map((subItem) => (
+                          <Link href={subItem.link} key={subItem.id}>
+                            <a className="flex items-center gap-x-2 text-gray-600 hover:text-blue-500 py-1">
+                              {subItem.icon ? subItem.icon : <FiHome />}
+                              {subItem.title}
+                            </a>
+                          </Link>
+                        ))}
+                      </div>
+                    ))}
+                  </div>
+                </Section>
+              </div>
+            </Menu.Dropdown>
+          </Menu>
 
           <button className="hidden md:block">My Library</button>
         </div>
 
         <div className="hidden md:flex gap-x-5 items-center">
-          <button className="bg-[#2CE080] rounded-sm px-4 py-2">
+          <button
+            onClick={() => setOpen(true)}
+            className="bg-[#2CE080] rounded-sm px-4 py-2"
+          >
             + Add a book
           </button>
           <div className="flex items-center gap-x-2">
@@ -55,17 +77,10 @@ const Topbar = () => {
           <FiBarChart2 size={24} />
         </button>
       </Section>
+
+      <Addbook open={open} setOpen={setOpen} />
     </div>
   );
 };
 
 export default Topbar;
-
-{
-  /* <span
-  onClick={() => toggleLight()}
-  className="cursor-pointer text-2xl p-2"
->
-  {dark ? <span>&#9728;</span> : <span>☪</span>}
-</span> */
-}
