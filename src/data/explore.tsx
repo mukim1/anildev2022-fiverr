@@ -3,7 +3,7 @@ import { MdNotificationsNone, MdOutlineScience } from "react-icons/md";
 import { RiGlobeLine, RiPsychotherapyLine } from "react-icons/ri";
 import { MdOutlineCorporateFare } from "react-icons/md";
 import { ImLeaf } from "react-icons/im";
-import { IoAnalyticsSharp } from "react-icons/io5";
+import { IoAnalyticsSharp, IoNotificationsSharp } from "react-icons/io5";
 import {
   FaClinicMedical,
   FaGraduationCap,
@@ -20,7 +20,7 @@ export const exploreItems = [
         id: 1,
         title: "Entrepreneurship",
         link: "/",
-        icon: <MdNotificationsNone />,
+        icon: <IoNotificationsSharp />,
       },
       {
         id: 2,
@@ -142,7 +142,8 @@ export const exploreItems = [
 
 import { GrInProgress } from "react-icons/gr";
 import { SiGoogleanalytics } from "react-icons/si";
-import { BiComment } from "react-icons/bi";
+import { BiComment, BiNotification } from "react-icons/bi";
 import { CiWallet } from "react-icons/ci";
 import { GiSelfLove } from "react-icons/gi";
-import { SlGraduation } from "react-icons/sl";
+import { SlGraduation } from "react-icons/sl";import { IoMdNotificationsOutline } from "react-icons/io";
+

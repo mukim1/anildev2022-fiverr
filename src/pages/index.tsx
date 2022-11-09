@@ -33,7 +33,7 @@ const Home: NextPage = () => {
 
   return (
     <Layout>
-      <h2 className="text-xl lg:text-4xl font-semibold pt-2 mb-10 text-gray-600 tracking-widest">
+      <h2 className="text-xl lg:text-4xl font-semibold pt-2 mb-10 text-gray-700 tracking-wide font-serif">
         My Library
       </h2>
 
@@ -43,11 +43,17 @@ const Home: NextPage = () => {
         className="mb-4"
         color="teal"
       >
-        <Tabs.List>
-          <Tabs.Tab sx={{ fontSize: "20px" }} value="reading">
+        <Tabs.List grow>
+          <Tabs.Tab
+            sx={{ fontSize: "20px", color: "#2ce080 !important" }}
+            value="reading"
+          >
             Currently reading {reading.length}
           </Tabs.Tab>
-          <Tabs.Tab sx={{ fontSize: "20px" }} value="Finished">
+          <Tabs.Tab
+            sx={{ fontSize: "20px", color: "#2ce080 !important" }}
+            value="Finished"
+          >
             Finished {finished.length}
           </Tabs.Tab>
         </Tabs.List>
@@ -69,17 +75,18 @@ const Home: NextPage = () => {
                 className="rounded-sm"
               />
             </Link>
-            <div className="p-3">
-              <h3 className="text-lg font-semibold">{b.title}</h3>
-              <h5 className="text-base text-gray-600">{b.author}</h5>
-              <h5 className="text-sm text-gray-600 flex items-center gap-x-1">
-                <AiOutlineClockCircle size={16} />
-                <span>{b.time} minutes ago</span>
+            <div className="p-3 tracking-wide border">
+              <h3 className="text-lg font-bold text-gray-700">{b.title}</h3>
+              <h5 className="text-base text-gray-600 my-2 font-semibold">
+                {b.author}
+              </h5>
+              <h5 className="text-gray-600 flex items-center gap-x-1">
+                <AiOutlineClockCircle size={22} />
+                <span>{b.time}-Minutes ago</span>
               </h5>
             </div>
-            <hr />
             <button
-              className="w-full py-1 text-blue-500 text-lg font-semibold"
+              className="w-full py-2 text-blue-600 text-lg font-semibold border"
               onClick={() => handleReadUnread(b.id)}
             >
               {isReading ? "Finish" : "Unread"}

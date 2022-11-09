@@ -15,7 +15,7 @@ const Topbar = () => {
   return (
     <div className="fixed top-0 w-full z-10 bg-white dark:bg-gray-800 dark:text-white">
       <Section cls="h-16 flex justify-between items-center">
-        <div className="flex gap-x-5 items-center">
+        <div className="flex gap-x-5 items-center font-serif">
           <Link href={"/"}>
             <Image src={"/images/logo.svg"} width={120} height={60} />
           </Link>
@@ -36,15 +36,16 @@ const Topbar = () => {
                   <div className="lg:flex pb-10">
                     {exploreItems.map((item) => (
                       <div className="flex-1" key={item.id}>
-                        <h3 className="text-lg font-semibold mb-2">
+                        <h3 className="text-gray-500 ml-5 mb-3">
                           {item.title}
                         </h3>
-                        <hr className="mt-2 mb-4" />
                         {item.items.map((subItem) => (
                           <Link href={subItem.link} key={subItem.id}>
-                            <a className="flex items-center gap-x-2 text-gray-600 hover:text-blue-500 py-1">
+                            <a className="flex items-center gap-x-2 py-1">
                               {subItem.icon ? subItem.icon : <FiHome />}
-                              {subItem.title}
+                              <span className="text-gray-500 hover:text-blue-500">
+                                {subItem.title}
+                              </span>
                             </a>
                           </Link>
                         ))}
@@ -62,7 +63,7 @@ const Topbar = () => {
         <div className="hidden md:flex gap-x-5 items-center">
           <button
             onClick={() => setOpen(true)}
-            className="bg-[#2CE080] rounded-sm px-4 py-2"
+            className="bg-[#2CE080] rounded-sm px-4 py-2 font-semibold"
           >
             + Add a book
           </button>
