@@ -1,7 +1,6 @@
 import { useForm } from "@mantine/form";
 import React from "react";
 import { useCtx } from "../../Contexts/GContext";
-// import { Book } from "../../data/book";
 
 import { Modal } from "../Modals/Modal";
 import { NativeSelect, TextInput } from "@mantine/core";

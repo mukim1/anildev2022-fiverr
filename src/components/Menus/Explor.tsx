@@ -1,21 +1,37 @@
 import React from "react";
-import { Menu } from "@mantine/core";
-import { IoIosArrowDown } from "react-icons/io";
 import { Section } from "../Layouts/Layout";
 import Link from "next/link";
 import { FiHome } from "react-icons/fi";
 import { exploreItems } from "../../data/explore";
+import { Menu } from "@mui/material";
+import { IoIosArrowDown } from "react-icons/io";
 
 const Explor = () => {
+  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+  const open = Boolean(anchorEl);
+  const handleClick = (event: React.MouseEvent<HTMLElement>) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
   return (
-    <Menu shadow={"xl"} offset={20}>
-      <Menu.Target>
-        <button className="hidden md:flex items-center gap-x-2">
-          <span>Explor</span>
-          <IoIosArrowDown size={12} />
-        </button>
-      </Menu.Target>
-      <Menu.Dropdown>
+    <div>
+      <button
+        className="hidden md:flex items-center gap-x-2"
+        onClick={handleClick}
+      >
+        <span>Explor</span>
+        <IoIosArrowDown size={12} />
+      </button>
+      <Menu
+        anchorEl={anchorEl}
+        open={open}
+        onClose={handleClose}
+        elevation={1}
+        sx={{ mt: 2.5, p: 0 }}
+      >
         <div className="w-screen">
           <Section>
             <div className="lg:flex pb-10">
@@ -37,8 +53,8 @@ const Explor = () => {
             </div>
           </Section>
         </div>
-      </Menu.Dropdown>
-    </Menu>
+      </Menu>
+    </div>
   );
 };
 
