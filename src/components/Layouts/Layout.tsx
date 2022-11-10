@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
 import Topbar from "../Appbars/Topbar";
-import Footer from "../Footer";
+import Footer from "../Footers/Footer";
 
 interface Props {
   children: React.ReactNode;

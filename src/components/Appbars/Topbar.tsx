@@ -1,16 +1,15 @@
 import Image from "next/image";
 import React, { useState } from "react";
 import { IoIosArrowDown } from "react-icons/io";
-import { FiBarChart2, FiHome, FiSearch } from "react-icons/fi";
+import { FiBarChart2, FiSearch } from "react-icons/fi";
 import { Section } from "../Layouts/Layout";
 import Link from "next/link";
 import Addbook from "../AddBook/Addbook";
-import { Button, Drawer, Group, Menu } from "@mantine/core";
-import { exploreItems } from "../../data/explore";
+import { AddBook } from "../Buttons/Buttons";
+import Explor from "../Menus/Explor";
 
 const Topbar = () => {
   const [open, setOpen] = useState(false);
-  const [isExplor, setIsExplor] = useState(false);
 
   return (
     <div className="fixed top-0 w-full z-10 bg-white dark:bg-gray-800 dark:text-white">
@@ -22,51 +21,12 @@ const Topbar = () => {
           <span>
             <FiSearch />
           </span>
-
-          <Menu shadow={"xl"} offset={20}>
-            <Menu.Target>
-              <button className="hidden md:flex items-center gap-x-2">
-                <span>Explor</span>
-                <IoIosArrowDown size={12} />
-              </button>
-            </Menu.Target>
-            <Menu.Dropdown>
-              <div className="w-screen">
-                <Section>
-                  <div className="lg:flex pb-10">
-                    {exploreItems.map((item) => (
-                      <div className="flex-1" key={item.id}>
-                        <h3 className="text-gray-500 ml-5 mb-3">
-                          {item.title}
-                        </h3>
-                        {item.items.map((subItem) => (
-                          <Link href={subItem.link} key={subItem.id}>
-                            <a className="flex items-center gap-x-2 py-1">
-                              {subItem.icon ? subItem.icon : <FiHome />}
-                              <span className="text-gray-500 hover:text-blue-500">
-                                {subItem.title}
-                              </span>
-                            </a>
-                          </Link>
-                        ))}
-                      </div>
-                    ))}
-                  </div>
-                </Section>
-              </div>
-            </Menu.Dropdown>
-          </Menu>
-
+          <Explor />
           <button className="hidden md:block">My Library</button>
         </div>
 
         <div className="hidden md:flex gap-x-5 items-center">
-          <button
-            onClick={() => setOpen(true)}
-            className="bg-[#2CE080] rounded-sm px-4 py-2 font-semibold"
-          >
-            + Add a book
-          </button>
+          <AddBook handleClick={() => setOpen(true)}>+ Add a book</AddBook>
           <div className="flex items-center gap-x-2">
             <div className="w-9 h-9 flex justify-center items-center rounded-full bg-[#2ce080] text-white">
               A

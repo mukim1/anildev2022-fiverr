@@ -1,10 +1,12 @@
 import { useForm } from "@mantine/form";
 import React from "react";
 import { useCtx } from "../../Contexts/GContext";
-import { Book } from "../../data/book";
+// import { Book } from "../../data/book";
 
 import { Modal } from "../Modals/Modal";
 import { NativeSelect, TextInput } from "@mantine/core";
+import { AddBook, Cancel } from "../Buttons/Buttons";
+import { Book } from "../../Types/Book";
 
 interface Props {
   open: boolean;
@@ -115,15 +117,10 @@ const Addbook = ({ open, setOpen }: Props) => {
           </div>
           <hr />
           <div className="p-6 flex gap-x-3 justify-end">
-            <button className="px-4 py-2 font-semibold border border-gray-300 rounded-sm">
-              Cancel
-            </button>
-            <button
-              type="submit"
-              className="bg-[#2CE080] font-semibold rounded-sm px-8 py-2"
-            >
+            <Cancel />
+            <AddBook type="submit" cls="px-8">
               Add book
-            </button>
+            </AddBook>
           </div>
         </form>
       </Modal>

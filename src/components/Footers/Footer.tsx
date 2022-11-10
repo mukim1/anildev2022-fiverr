@@ -1,6 +1,6 @@
 import Link from "next/link";
 import React from "react";
-import { Section } from "./Layouts/Layout";
+import { Section } from "../Layouts/Layout";
 import Image from "next/image";
 
 const Footer = () => {

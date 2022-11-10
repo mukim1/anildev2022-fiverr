@@ -1,13 +1,14 @@
 import React, { useState } from "react";
 import { createContext } from "react";
-import { Book, books as initBooks } from "../data/book";
+import { Book } from "../Types/Book";
+import initBooks from "../data/book.json";
 
 export const Context = createContext<ContextProps | null>({} as ContextProps);
 export const useCtx = () => React.useContext(Context) as ContextProps;
 
 const GContext = ({ children }: { children: React.ReactNode }) => {
   const [open, setOpen] = useState(false);
-  const [books, setBooks] = useState(initBooks);
+  const [books, setBooks] = useState(initBooks.books);
   const [reading, setReading] = useState(books as Book[]);
   const [finished, setFinished] = useState([] as Book[]);
 
