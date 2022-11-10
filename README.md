@@ -9,7 +9,7 @@
 #### all of the source code is present in the "src" folder, I decorate this project with some sub-folders in the "src" folder like:
 
 ### components:
-#### all of the reusable component present there
+#### all of the reusable component present there, like: buttons, tabs, menus. page Layouts, etc.
 
 ### Contexts:
 #### all of the global states/data spread all over the project by this "context API", you can use some external packages instead of it, like redux, nobex, zustant, recoil
